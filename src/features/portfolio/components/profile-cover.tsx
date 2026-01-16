@@ -19,7 +19,7 @@ export function ProfileCover() {
             src="/waris-banner.svg"
             alt="Waris Banner"
             fill
-            className="object-cover p-8 sm:p-12 md:p-16 dark:invert"
+            className="object-contain p-4 sm:p-12 md:p-16 dark:invert"
             priority
             id="js-cover-mark"
           />
