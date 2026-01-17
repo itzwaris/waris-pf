@@ -25,8 +25,8 @@ export const MAIN_NAV: NavItem[] = [
   // },
 ];
 
-export const GITHUB_USERNAME = "notwaris";
-export const SOURCE_CODE_GITHUB_REPO = "notwaris/portfolio"; // Assuming portfolio repo, or just linking to profile? User said "everywhere github acc used use this acc https://github.com/notwaris"
+export const GITHUB_USERNAME = "itzwaris";
+export const SOURCE_CODE_GITHUB_REPO = "itzwaris/portfolio"; // Assuming portfolio repo, or just linking to profile? User said "everywhere github acc used use this acc https://github.com/notwaris"
 export const SOURCE_CODE_GITHUB_URL = "https://github.com/itzwaris";
 
 export const SPONSORSHIP_URL = "https://github.com/sponsors/itzwaris";
