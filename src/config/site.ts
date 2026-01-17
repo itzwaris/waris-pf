@@ -3,7 +3,7 @@ import type { NavItem } from "@/types/nav";
 
 export const SITE_INFO = {
   name: USER.displayName,
-  url: process.env.APP_URL || "https://waris.com",
+  url: process.env.APP_URL || "https://waris.wtf",
   ogImage: USER.ogImage,
   description: USER.bio,
   keywords: USER.keywords,
@@ -27,12 +27,12 @@ export const MAIN_NAV: NavItem[] = [
 
 export const GITHUB_USERNAME = "notwaris";
 export const SOURCE_CODE_GITHUB_REPO = "notwaris/portfolio"; // Assuming portfolio repo, or just linking to profile? User said "everywhere github acc used use this acc https://github.com/notwaris"
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/notwaris";
+export const SOURCE_CODE_GITHUB_URL = "https://github.com/itzwaris";
 
-export const SPONSORSHIP_URL = "https://github.com/sponsors/notwaris";
+export const SPONSORSHIP_URL = "https://github.com/sponsors/itzwaris";
 
 export const UTM_PARAMS = {
-  utm_source: "waris.com",
+  utm_source: "waris.wtf",
   utm_medium: "referral",
   utm_campaign: "portfolio",
 };
