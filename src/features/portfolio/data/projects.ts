@@ -5,9 +5,9 @@ export const PROJECTS: Project[] = [
     id: "minsql",
     title: "minsql",
     period: {
-      start: "2024",
+      start: "2025",
     },
-    link: "https://github.com/notwaris/minsql",
+    link: "https://github.com/itzwaris/minsql",
     skills: [
       "Database System",
       "Deterministic Execution",
