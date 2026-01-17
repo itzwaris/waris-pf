@@ -36,7 +36,7 @@ export const TECH_STACK: TechStack[] = [
     title: "Assembly",
     href: "https://en.wikipedia.org/wiki/Assembly_language",
     categories: ["Language"],
-    icon: "/images/tech/assembly.png",
+    icon: "/public/assembly.webp",
   },
   {
     key: "docker",
