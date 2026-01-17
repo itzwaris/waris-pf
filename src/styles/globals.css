@@ -317,6 +317,7 @@
     @apply bg-background font-sans text-foreground antialiased;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   /* Custom scrollbar styling. Thanks @shadcn-ui */

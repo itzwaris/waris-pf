@@ -3,8 +3,6 @@
 import { useCommandState } from "cmdk";
 import type { LucideProps } from "lucide-react";
 import {
-  AwardIcon,
-  BookmarkIcon,
   BoxIcon,
   BriefcaseBusinessIcon,
   CornerDownLeftIcon,
@@ -15,7 +13,6 @@ import {
   MoonStarIcon,
   QuoteIcon,
   RssIcon,
-  ShieldCheckIcon,
   SunMediumIcon,
   TextIcon,
   TextInitialIcon,
@@ -74,11 +71,6 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     icon: TextInitialIcon,
   },
   {
-    title: "Testimonials",
-    href: "/#testimonials",
-    icon: QuoteIcon,
-  },
-  {
     title: "Tech Stack",
     href: "/#stack",
     icon: LayersIcon,
@@ -93,26 +85,6 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#projects",
     icon: BoxIcon,
   },
-  {
-    title: "Honors & Awards",
-    href: "/#awards",
-    icon: AwardIcon,
-  },
-  {
-    title: "Certifications",
-    href: "/#certs",
-    icon: ShieldCheckIcon,
-  },
-  {
-    title: "Bookmarks",
-    href: "/#bookmarks",
-    icon: BookmarkIcon,
-  },
-  {
-    title: "Download vCard",
-    href: "/vcard",
-    icon: DownloadIcon,
-  },
 ];
 
 const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
@@ -122,25 +94,7 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
   openInNewTab: true,
 }));
 
-const OTHER_LINK_ITEMS: CommandLinkItem[] = [
-  {
-    title: "Sponsors",
-    href: "/sponsors",
-    icon: HeartIcon,
-  },
-  {
-    title: "llms.txt",
-    href: "/llms.txt",
-    icon: FileTextIcon,
-    openInNewTab: true,
-  },
-  {
-    title: "RSS Feed",
-    href: "/rss",
-    icon: RssIcon,
-    openInNewTab: true,
-  },
-];
+// const OTHER_LINK_ITEMS: CommandLinkItem[] = [];
 
 export function CommandMenu() {
   const router = useRouter();
@@ -268,53 +222,8 @@ export function CommandMenu() {
             onLinkSelect={handleOpenLink}
           />
 
-          <CommandGroup heading="Brand Assets">
-            <CommandItem
-              onSelect={() => {
-                handleCopyText(
-                  getMarkSVG("#fff"),
-                  "Copied Mark as SVG"
-                );
-              }}
-            >
-              <ChanhDaiMark />
-              Copy Mark as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => {
-                handleCopyText(
-                  getWordmarkSVG("#fff"),
-                  "Copied Logotype as SVG"
-                );
-              }}
-            >
-              <TypeIcon />
-              Copy Logotype as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => handleOpenLink("/blog/chanhdai-brand")}
-            >
-              <TriangleDashedIcon />
-              Brand Guidelines
-            </CommandItem>
-
-            <CommandItem asChild>
-              <a href="https://assets.chanhdai.com/chanhdai-brand.zip" download>
-                <DownloadIcon />
-                Download Brand Assets
-              </a>
-            </CommandItem>
-          </CommandGroup>
 
 
-
-          <CommandLinkGroup
-            heading="Other"
-            links={OTHER_LINK_ITEMS}
-            onLinkSelect={handleOpenLink}
-          />
         </CommandList>
 
         <CommandMenuFooter />

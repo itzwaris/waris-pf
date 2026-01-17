@@ -39,13 +39,6 @@ export const TECH_STACK: TechStack[] = [
     icon: "/images/tech/assembly.png",
   },
   {
-    key: "tailwindcss",
-    title: "Tailwind CSS",
-    href: "https://tailwindcss.com/",
-    categories: ["Framework"],
-    icon: "https://cdn.simpleicons.org/tailwindcss",
-  },
-  {
     key: "docker",
     title: "Docker",
     href: "https://www.docker.com/",

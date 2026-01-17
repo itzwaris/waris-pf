@@ -4,14 +4,14 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     icon: "https://assets.chanhdai.com/images/link-icons/x.webp?t=1759581475",
     title: "X (formerly Twitter)",
-    description: "@iplaygamesdev",
-    href: "https://x.com/iplaygamesdev",
+    description: "@bas3null",
+    href: "https://x.com/bas3null",
   },
   {
     icon: "https://assets.chanhdai.com/images/link-icons/github.webp?t=1759581475",
     title: "GitHub",
-    description: "notwaris",
-    href: "https://github.com/notwaris",
+    description: "itzwaris",
+    href: "https://github.com/itzwaris",
   },
   {
     icon: "https://cdn.simpleicons.org/instagram/white",

@@ -73,36 +73,18 @@ export function useLanyard(userId: string) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Initial fetch
-        const fetchData = async () => {
-            try {
-                const res = await fetch(`${LANYARD_API}/users/${userId}`);
-                const body = (await res.json()) as LanyardResponse;
-                console.log("Lanyard API Response:", body);
-                if (body.success) {
-                    setData(body.data);
-                } else {
-                    console.warn("Lanyard API Error:", body);
-                }
-            } catch (error) {
-                console.error("Lanyard fetch error:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-
-        // WebSocket connection for real-time updates
-        let socket: WebSocket;
-        let heartbeatInterval: NodeJS.Timeout;
+        let socket: WebSocket | null = null;
+        let heartbeatInterval: NodeJS.Timeout | undefined;
+        let reconnectTimeout: NodeJS.Timeout | undefined;
 
         const connect = () => {
+            if (reconnectTimeout) clearTimeout(reconnectTimeout);
+
             socket = new WebSocket(LANYARD_WS);
 
             socket.onopen = () => {
                 // Subscribe to user
-                socket.send(
+                socket?.send(
                     JSON.stringify({
                         op: 2,
                         d: {
@@ -122,29 +104,53 @@ export function useLanyard(userId: string) {
                 // INITIAL_STATE or PRESENCE_UPDATE
                 if (msg.t === "INIT_STATE" || msg.t === "PRESENCE_UPDATE") {
                     setData(msg.d);
+                    setLoading(false);
                 }
 
-                // Heartbeat
+                // Heartbeat hello
                 if (msg.op === 1) {
+                    const interval = msg.d.heartbeat_interval;
+                    if (heartbeatInterval) clearInterval(heartbeatInterval);
+
                     heartbeatInterval = setInterval(() => {
-                        if (socket.readyState === WebSocket.OPEN) {
+                        if (socket?.readyState === WebSocket.OPEN) {
                             socket.send(JSON.stringify({ op: 3 }));
                         }
-                    }, msg.d.heartbeat_interval);
+                    }, interval);
                 }
             };
 
             socket.onclose = () => {
-                clearInterval(heartbeatInterval);
+                if (heartbeatInterval) clearInterval(heartbeatInterval);
                 // Try to reconnect after 5s
-                setTimeout(connect, 5000);
+                reconnectTimeout = setTimeout(connect, 5000);
             };
+
+            socket.onerror = () => {
+                socket?.close();
+            }
         };
 
+        // Initial REST fetch for immediate data
+        const fetchInitialData = async () => {
+            try {
+                const res = await fetch(`${LANYARD_API}/users/${userId}`);
+                const body = (await res.json()) as LanyardResponse;
+                if (body.success) {
+                    setData(body.data);
+                    setLoading(false);
+                }
+            } catch (error) {
+                console.error("Lanyard fetch error:", error);
+            }
+        };
+
+        fetchInitialData();
         connect();
 
         return () => {
-            clearInterval(heartbeatInterval);
+            if (heartbeatInterval) clearInterval(heartbeatInterval);
+            if (reconnectTimeout) clearTimeout(reconnectTimeout);
             if (socket) socket.close();
         };
     }, [userId]);
